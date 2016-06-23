@@ -1,0 +1,63 @@
+@import url("../fonts/monosten.css");
+
+
+/* 
+   ///////////////////////////////////////////
+      FONT 
+   ///////////////////////////////////////////
+*/
+
+
+
+
+/* 
+   ///////////////////////////////////////////
+      GALLERY 
+   ///////////////////////////////////////////
+*/
+p {
+	font-family: 'monostene';
+}
+
+main {
+	margin: 20px 0;
+}
+main ul {
+	display: flex;
+	justify-content: space-between;
+}
+
+main li {
+	width: 22%;
+	height: 100px;
+	border: 1px solid blue;
+	padding: 10px;	
+}
+
+
+/* 
+   ///////////////////////////////////////////
+      MOBILE 
+   ///////////////////////////////////////////
+*/
+
+
+@media (max-width: 600px){
+
+	main ul {
+		flex-direction: column;
+	}
+
+	main li {
+		width: 100%;
+	}
+
+	main li:last-child {
+		display: none;
+	}
+
+}
+
+
+
+
