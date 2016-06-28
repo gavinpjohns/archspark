@@ -24,13 +24,13 @@ menuTrigger.addEventListener('click', showMenu);
 
 
 
+
 // Event Handlers
 // ------------------------------------------------
 //rebuild the todo list with page is reloaded
 function reloadPage(e) {
 	refreshGallery("archdaily");
 	refreshDropdown();
-	refreshMenu();
 }
 
 
@@ -58,6 +58,8 @@ function refreshDropdown(){
 }
 
 
+
+
 //creates entire todo list from json data
 function clickDropdown(e){
 	var target = e.target
@@ -73,7 +75,7 @@ function clickDropdown(e){
 	refreshGallery(resourceId);
 
 	dropdown.classList.toggle('dropdown-close');
-	body.classList.toggle('overlay-open');
+	body.classList.toggle('dropdown-overlay-open');
 }
 
 //creates entire todo list from json data
@@ -84,20 +86,22 @@ function clickMenu(e){
 	if (target.tagName != "LI") {
 		target = target.parentElement;
 	}
+	var menuClass = target.getAttribute('class');
+	console.log(menuClass);
 
 	menu.classList.toggle('menu-close');
-	body.classList.toggle('overlay-open');
+	body.classList.toggle('menu-overlay-open');
 }
 
 //show dropdown
 function showDropdown() {
 	dropdown.classList.toggle('dropdown-close');
-	body.classList.toggle('overlay-open');
+	body.classList.toggle('dropdown-overlay-open');
 }
 //show menu
 function showMenu() {
 	menu.classList.toggle('menu-close');
-	body.classList.toggle('overlay-open');
+	body.classList.toggle('menu-overlay-open');
 }
 
 

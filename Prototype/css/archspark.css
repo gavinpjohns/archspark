@@ -55,10 +55,8 @@ nav .container {
 	width: 1000px;
 	height: 80px;
 	margin: auto;
-	padding-left: 20px;
 	display: flex;
 	justify-content: space-between;
-	
 	align-items: center;
 }
 
@@ -90,7 +88,6 @@ nav .nav-icons li {
 	background: #FFFFFF;
 	border: 0px solid #DBDBDB;
 	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.24), 0px 0px 2px 0px rgba(0,0,0,0.12);
-
 	transition-property: all;
 	transition-duration: .3s;
 	transition-timing-function: easeInOutElastic;
@@ -147,18 +144,31 @@ nav .nav-icons li {
    ///////////////////////////////////////////
 */
 
-body.overlay-open {
+body.dropdown-overlay-open {
 	overflow: hidden;
 }
 
-body.overlay-open main {
+body.dropdown-overlay-open main {
 	-webkit-filter: blur(10px) opacity(.5);
 	filter: blur(10px) opacity(.5);
 	pointer-events: none;
+	transition-property: all;
+	transition-duration: .3s;
+	transition-timing-function: easeInOutElastic;
 
 }
 
-
+body.menu-overlay-open main,
+body.menu-overlay-open nav {
+	overflow: hidden;
+	-webkit-filter: blur(10px) opacity(.5);
+	filter: blur(10px) opacity(.5);
+	pointer-events: none;
+	z-index: 3;
+	transition-property: all;
+	transition-duration: .3s;
+	transition-timing-function: easeInOutElastic;
+}
 
 
 
@@ -179,6 +189,7 @@ body.overlay-open main {
 .menu {
 	height: 100%;
 	width: 520px;
+	overflow: scroll;
 	position: fixed;
 	top: 0px;
 	right: 0px;
@@ -192,7 +203,7 @@ body.overlay-open main {
 }
 
 .menu li {
-	line-height: 75px;
+	line-height: 80px;
 	padding-left: 120px;
 	padding-right: 60px;
     display: inline-block;
@@ -324,8 +335,6 @@ main li {
 	position: absolute;
 	bottom: 0;
 	margin-bottom: 20px;
-	
-
 }
 
 .card .card-footer .heart {
@@ -344,6 +353,73 @@ main li {
       MOBILE 
    ///////////////////////////////////////////
 */
+
+@media (min-width: 2300px){
+	nav .container {
+		width: 2300px;
+	}
+}
+
+@media (min-width: 1970px) and (max-width: 2300px){
+	nav .container {
+		width: 1970px;
+
+	}
+}
+
+@media (min-width: 1640px) and (max-width: 1970px){
+	nav .container {
+		width: 1640px;
+
+	}
+}
+
+@media (min-width: 1310px) and (max-width: 1640px){
+	nav .container {
+		width: 1310px;
+
+	}
+}
+
+@media (min-width: 980px) and (max-width: 1310px){
+	nav .container {
+		width: 980px;
+
+	}
+}
+
+@media (min-width: 650px) and (max-width: 980px){
+	nav .container {
+		width: 650px;
+
+	}
+}
+
+@media (min-width: 0px) and (max-width: 650px){
+	nav .container {
+		width: 330px;
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
