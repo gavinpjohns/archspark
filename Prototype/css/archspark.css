@@ -45,7 +45,7 @@ nav {
 	top:0;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 2;
 	background: #fff;
 	height: 80px;
 	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.24), 0px 0px 2px 0px rgba(0,0,0,0.12);
@@ -53,20 +53,18 @@ nav {
 
 nav .container {
 	width: 1000px;
+	height: 80px;
 	margin: auto;
 	padding-left: 20px;
 	display: flex;
 	justify-content: space-between;
-	position: absolute;
-  	top: 50%;
-  	transform: translateY(-50%);
+	
+	align-items: center;
 }
 
 nav .nav-icons {
 	display: flex;
-	position: absolute;
-  	top: 50%;
-  	transform: translateY(-50%);
+
 }
 
 
@@ -79,41 +77,49 @@ nav .nav-icons {
 */
 
 .dropdown {
-	height: 100%;
 	width: 420px;
+	overflow: scroll;
 	position: fixed;
 	top:80px;
+	bottom: 40px;
 	left: 150px;
 	z-index: 1;
 	background: #FFFFFF;
 	border: 0px solid #DBDBDB;
 	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.24), 0px 0px 2px 0px rgba(0,0,0,0.12);
+
+	transition-property: all;
+	transition-duration: .3s;
+	transition-timing-function: easeInOutElastic;
 }
 
-.dropdown .dropdown-resources li {
+.dropdown li {
+	border: 0.5px solid transparent;
 	line-height: 75px;
 	padding-left: 60px;
 	padding-right: 60px;
     display: inline-block;
     vertical-align: middle;
 	display: flex;
-	cursor: pointer;
-}
-
-.dropdown .dropdown-resources li h1 {
-	color: #7A7A7C;
-}
-
-
-.dropdown .dropdown-resources li:hover {
-	border: 0.5px solid #DBDBDB;
+	cursor: pointer;	
 	transition-property: all;
 	transition-duration: .3s;
 	transition-timing-function: easeInOutElastic;
+}
+
+.dropdown li:hover {
+	border-color: #DBDBDB;
+}
+
+.dropdown li h1 {
+	color: #7A7A7C;
+}
+
+.dropdown li:hover h1{
 	color: #262626;
 }
 
-.dropdown .dropdown-resources .logo{
+.dropdown .logo{
 	width: 42px;
 	height: 42px;
 	position: absolute;
@@ -122,16 +128,34 @@ nav .nav-icons {
 
 .dropdown-close {
 		transform: translateY(-150%);
-		transition-property: all;
-		transition-duration: .3s;
-		transition-timing-function: easeInOutElastic;
+}
+
+.dropdown-trigger {
+	display: flex;
+	cursor: pointer;
 }
 
 
-.active-menu {
-background: rgba(255,255,255,0.50);
-filter: blur(10px);
+
+
+/* 
+   ///////////////////////////////////////////
+      DROPDOWN & MENU OPEN STATE 
+   ///////////////////////////////////////////
+*/
+
+body.overlay-open {
+	overflow: hidden;
 }
+
+body.overlay-open main {
+	-webkit-filter: blur(10px) opacity(.5);
+	filter: blur(10px) opacity(.5);
+	pointer-events: none;
+
+}
+
+
 
 
 
@@ -155,13 +179,16 @@ filter: blur(10px);
 	position: fixed;
 	top: 0px;
 	right: 0px;
-	z-index: 1;
+	z-index: 3;
 	background: #FFFFFF;
 	border: 0px solid #DBDBDB;
-	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.24), 0px 0px 2px 0px rgba(0,0,0,0.12);
+	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.24), 0px 0px 2px 0px rgba(0,0,0,0.12);	
+	transition-property: all;
+	transition-duration: .3s;
+	transition-timing-function: easeInOutElastic;
 }
 
-.menu .menu-options li {
+.menu li {
 	line-height: 75px;
 	padding-left: 120px;
 	padding-right: 60px;
@@ -169,17 +196,23 @@ filter: blur(10px);
     vertical-align: middle;
 	display: flex;
 	cursor: pointer;
+	border: 0.5px solid transparent;
 }
 
-.menu .menu-options li:hover {
-	border: 0.5px solid #DBDBDB;
-	transition-property: all;
-	transition-duration: .3s;
-	transition-timing-function: easeInOutElastic;
+.menu  li:hover {	
+	border-color: #DBDBDB;
+}
+
+.menu li h1 {
+	color: #7A7A7C;
+}
+
+.menu li:hover h1{
+	color: #262626;
 }
 
 
-.menu .menu-options .icons {
+.menu .icons {
 	width: 42px;
 	height: 42px;
 	position: absolute;
@@ -255,6 +288,7 @@ main li {
 .card .card-title {
 	padding-left: 20px;
 	padding-bottom: 20px;
+	flex: 1;
 }
 
 .card .logo {
@@ -272,8 +306,7 @@ main li {
 .card .date {
 }
 
-.card .summary {
-	
+.card .summary {	
 	margin-bottom: 15px;
 	border-bottom: 0.25px solid #999999;
 

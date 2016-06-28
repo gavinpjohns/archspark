@@ -1,6 +1,8 @@
 // Structure
 // ------------------------------------------------
+var body = document.querySelector('body');
 var gallery = document.querySelector(".gallery");
+var dropdownTrigger = document.querySelector('.dropdown-trigger');
 var dropdown = document.querySelector('.dropdown');
 var menu = document.querySelector('.menu');
 
@@ -16,8 +18,9 @@ var todoList = {
 // Events
 // ------------------------------------------------
 window.addEventListener("load", reloadPage);
-dropdown.addEventListener('click', showDropdown);
+dropdownTrigger.addEventListener('click', showDropdown);
 menu.addEventListener('click', showMenu);
+
 
 
 // Event Handlers
@@ -25,6 +28,7 @@ menu.addEventListener('click', showMenu);
 //rebuild the todo list with page is reloaded
 function reloadPage(e) {
 	refreshGallery();
+	refreshDropdown();
 }
 
 
@@ -32,16 +36,48 @@ function reloadPage(e) {
 // ------------------------------------------------
 
 //creates entire todo list from json data
-function refreshGallery(){
+function refreshGallery(id){
 	//clears out the list
 	gallery.innerHTML = "";
 	//adds one new task for each item in the array
-	archspark.posts.forEach(createPost);
+	// archspark.posts.forEach(createPost);
+
+	for (var i = 0; i < archspark.posts.length; i++) {
+		createPost(archspark.posts[i], id);
+	}
 }
+
+//creates entire todo list from json data
+function refreshDropdown(){
+	//clears out the list
+	dropdown.innerHTML = "";
+	//adds one new task for each item in the array
+	archspark.resources.forEach(createResource);
+}
+
+//creates entire todo list from json data
+function clickDropdown(e){
+	var target = e.target
+
+
+	//error checking. return early if a li wasn't clicked
+	if (target.tagName != "LI") {
+		target = target.parentElement;
+	}
+
+	var resourceId = target.getAttribute("id");
+	console.log(resourceId);
+	refreshGallery(resourceId);
+
+	dropdown.classList.toggle('dropdown-close');
+	body.classList.toggle('overlay-open');
+}
+
 
 //show dropdown
 function showDropdown() {
 	dropdown.classList.toggle('dropdown-close');
+	body.classList.toggle('overlay-open');
 }
 //show menu
 function showMenu() {
@@ -49,13 +85,14 @@ function showMenu() {
 }
 
 
-//create one li on the page from a task object
-function createPost(post) {
-	console.log(post);
-
-
-
-// 1. Create Markup
+//create one li on the page from a post
+function createPost(post, id) {
+	
+	if (post.resource != id) {
+		return;
+	} 
+	console.log(id);
+	// 1. Create Markup
 	var li = document.createElement("li");
 	var template = 
 		'<img class="image" src="' + post.image + '">' +
@@ -73,19 +110,36 @@ function createPost(post) {
       			'<img src="img/icons/share.svg" class="share">' +
       		'</div>' +
       	'</div>'
-    ;
-
-
-	
-// 2. Bedazzle Markup (add attributes and content)
+    ;	
+	// 2. Bedazzle Markup (add attributes and content)
 	// img.setAttribute("src", post.image);
 
-
-
-// 3. Append new elements to DOM tree
+	// 3. Append new elements to DOM tree
 	li.innerHTML = template;
 	gallery.appendChild(li);
 }
 
+//create one li on the page from a dropdown resource
+function createResource(resource) {
+	console.log(resource);
 
+	// 1. Create Markup
+	var li = document.createElement("li");
+	var template = 
+		'<h1>' + resource.name + '</h1>' +
+		'<img src="' + resource.logo + '" class="logo">';
+
+
+    	
+	// 2. Bedazzle Markup (add attributes and content)
+	li.setAttribute("id", resource.id);
+	li.addEventListener('click', clickDropdown);
+
+
+
+
+	// 3. Append new elements to DOM tree
+	li.innerHTML = template;
+	dropdown.appendChild(li);
+}
 
