@@ -2,9 +2,10 @@
 // ------------------------------------------------
 var body = document.querySelector('body');
 var gallery = document.querySelector(".gallery");
-var dropdownTrigger = document.querySelector('.dropdown-trigger');
 var dropdown = document.querySelector('.dropdown');
+var dropdownTrigger = document.querySelector('.dropdown-trigger');
 var menu = document.querySelector('.menu');
+var menuTrigger = document.querySelector('.menu-trigger');
 
 
 
@@ -19,7 +20,7 @@ var todoList = {
 // ------------------------------------------------
 window.addEventListener("load", reloadPage);
 dropdownTrigger.addEventListener('click', showDropdown);
-menu.addEventListener('click', showMenu);
+menuTrigger.addEventListener('click', showMenu);
 
 
 
@@ -27,8 +28,9 @@ menu.addEventListener('click', showMenu);
 // ------------------------------------------------
 //rebuild the todo list with page is reloaded
 function reloadPage(e) {
-	refreshGallery();
+	refreshGallery("archdaily");
 	refreshDropdown();
+	refreshMenu();
 }
 
 
@@ -55,6 +57,7 @@ function refreshDropdown(){
 	archspark.resources.forEach(createResource);
 }
 
+
 //creates entire todo list from json data
 function clickDropdown(e){
 	var target = e.target
@@ -73,6 +76,18 @@ function clickDropdown(e){
 	body.classList.toggle('overlay-open');
 }
 
+//creates entire todo list from json data
+function clickMenu(e){
+	var target = e.target
+
+	//error checking. return early if a li wasn't clicked
+	if (target.tagName != "LI") {
+		target = target.parentElement;
+	}
+
+	menu.classList.toggle('menu-close');
+	body.classList.toggle('overlay-open');
+}
 
 //show dropdown
 function showDropdown() {
@@ -82,6 +97,7 @@ function showDropdown() {
 //show menu
 function showMenu() {
 	menu.classList.toggle('menu-close');
+	body.classList.toggle('overlay-open');
 }
 
 

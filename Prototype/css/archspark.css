@@ -64,9 +64,12 @@ nav .container {
 
 nav .nav-icons {
 	display: flex;
-
 }
 
+nav .nav-icons li {
+	padding-left: 20px;
+
+}
 
 
 
@@ -127,7 +130,7 @@ nav .nav-icons {
 }
 
 .dropdown-close {
-		transform: translateY(-150%);
+		transform: translateY(-1300px);
 }
 
 .dropdown-trigger {
@@ -220,10 +223,15 @@ body.overlay-open main {
 }
 
 .menu-close {
-		transform: translateX(150%);
+		transform: translateX(520px);
 		transition-property: all;
 		transition-duration: .3s;
 		transition-timing-function: easeInOutElastic;
+}
+
+.menu-trigger {
+	display: flex;
+	cursor: pointer;
 }
 
 /* 
